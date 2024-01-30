@@ -39,7 +39,7 @@ router.post("/login", async (req, res) => {
               expiresIn: "1h",
             }
           );
-          res.cookie("token", token, { maxAge: 7*24*60*60*1000, httpOnly: true, domain: "localhost" });
+          res.cookie("token", token, { maxAge: 7*24*60*60*1000, httpOnly: true, sameSite: "none", secure: true });
           res.send({ msg: "login successfully", token: token });
         } else {
           res.status(401).send("wrong password");
